@@ -11,7 +11,7 @@ const ClearButton = ({bsSize, className, label, onClick, ...props}) => (
   <button
     {...props}
     aria-label={label}
-    className={cx('close', 'rbt-close', {
+    className={cx('form-control search-control safari-input-rendering-bug-fix', {
       'rbt-close-lg': bsSize === 'large' || bsSize === 'lg',
     }, className)}
     onClick={(e) => {
