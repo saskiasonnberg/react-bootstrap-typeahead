@@ -9,7 +9,8 @@ function buildCSS(options, outdir) {
   let filename = options.file
     .split('/')
     .pop()
-    .replace('.scss', '');
+    .replace('.scss', '')
+	.replace('scss', '');
 
   // Denote minified CSS.
   if (options.outputStyle === 'compressed') {
@@ -22,6 +23,9 @@ function buildCSS(options, outdir) {
       console.log(err);
       process.exit(1);
     }
+	
+	console.log(outdir);
+	console.log(`${filename}.css`);
 
     fs.writeFileSync(path.join(outdir, `${filename}.css`), result.css);
   });
@@ -41,7 +45,7 @@ sassFiles.forEach((filename) => {
     return;
   }
 
-  const file = path.join(rootDir, 'scss', filename);
+  const file = path.join('scss', filename);
 
   // Output both expanded and minified versions.
   ['compressed', 'expanded'].forEach(outputStyle => {

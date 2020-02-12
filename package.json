@@ -6,20 +6,13 @@
   "license": "MIT",
   "main": "lib/index.js",
   "scripts": {
-    "build": "npm run clean && npm run build:css && npm run build:lib && npm run build:dist && npm run build:example",
-    "build:css": "node ./scripts/buildCSS.js",
-    "build:dist": "webpack --mode development && NODE_ENV=production webpack --mode production",
-    "build:example": "NODE_ENV=production webpack --mode production --config example/webpack.config.js",
-    "build:lib": "babel src --out-dir lib",
-    "check": "npm run lint && npm test",
-    "clean": "rimraf css && rimraf dist && rimraf lib",
-    "deploy-example": "node ./scripts/deployExample.js",
+    "build": "node-sass scss/Typeahead.scss css/Typeahead.css --output-style expanded && webpack --config webpack/webpack.config.js && webpack --config webpack/webpack.config.prod.js && babel src --out-dir lib && webpack --config webpack/webpack.config.example.prod.js",
+    "cleanup": "rimraf css && rimraf dist && rimraf lib",
+    "example": "webpack -w --progress --colors --config webpack/webpack.config.example.js",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
-    "postpublish": "npm run deploy-example",
-    "prepublishOnly": "npm run check && npm run build",
-    "start": "webpack --mode development -w --progress --config example/webpack.config.js",
-    "test": "karma start"
+    "prepublishOnly": "npm run lint && npm test && npm run build",
+    "styles": "node-sass scss/Typeahead.scss css/Typeahead.css --watch --output-style expanded",
+    "test": "karma start karma.conf.js"
   },
   "keywords": [
     "auto complete",
