@@ -19,7 +19,6 @@ const ClearButton = ({bsSize, className, label, onClick, ...props}) => (
       onClick(e);
     }}
     type="button">
-    <span aria-hidden="true">&times;</span>
     <span className="sr-only">{label}</span>
   </button>
 );
